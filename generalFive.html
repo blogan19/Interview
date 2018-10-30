@@ -50,9 +50,7 @@
 <div class="container" id="qContainer">
 	
 </div>
-<div class="container">
-	<button class="btn btn-block" onclick="reset()"> Delete all Saved Notes</button>
-</div>
+
 
 
 
@@ -65,16 +63,20 @@
 	}
 	qContainer.innerHTML = text;
 
-	function save(num){
+function save(num){
 		var input = document.getElementById('t'+num).value;
+		var sN = "qFive" + num;
+		sN = sN.toString();
 		console.log(input);
-		localStorage.removeItem(num)
-		localStorage.setItem(num , input);
+		localStorage.removeItem(sN)
+		localStorage.setItem(sN , input);
 		toast();
 	}
 	function deleteNote(num){
 		if(confirm("Are you sure you want to delete this note?")){
-			localStorage.removeItem(num)
+			var sN = "qFive" + num;
+			sN = sN.toString();
+			localStorage.removeItem(sN);
 			toastDel();
 		}else{
 			return;
@@ -126,25 +128,17 @@
 
 	function load(){
 		for(i=0; i <q.length; i++){
-			document.getElementById('t'+i).value = localStorage.getItem(i)
+			var sN = "qFive" + i;
+			sN = sN.toString();
+			document.getElementById('t'+i).value = localStorage.getItem(sN)
 			var note = document.getElementById('note'+i)
-			note.innerHTML = localStorage.getItem(i)
+			note.innerHTML = localStorage.getItem(sN)
 			if((note.innerHTML).length > 0){
 				note.style.display ='block';
 			}
 		}
 	}
 	load();
-
-	function reset(){
-	if(confirm("Are you sure you want to delete all notes?")){
-			localStorage.clear();
-			location.reload();
-		}else{
-			return;
-		}		
-		
-	}
 </script>
 
 </body>

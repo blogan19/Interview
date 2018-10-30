@@ -50,11 +50,6 @@
 <div class="container" id="qContainer">
 	
 </div>
-<div class="container">
-	<button class="btn btn-block" onclick="reset()"> Delete all Saved Notes</button>
-</div>
-
-
 
 <script type="text/javascript">
 	var q = ['How much do you know about this company? Who are our competitors?','What impact do you think technology is likely to have on the role of a community pharmacist in the future?','What steps have you taken to help the business you work for evolve','A patient comes into your pharmacy 5 minutes before closing with a prescription for a schedule 2 controlled drug. The prescription is not legally valid and the GP is now closed. How do you approach this situation?','What things do you need to assure yourself about before dispensing prescription medicines to a patient','What are the pros and cons of the MUR/NMS service? Do you think it is a worthwhile service?','A patient returns to collect an owing for a critical medication however the item is not in stock. How do you approach this situation?','Two of your technicians are not getting along, and customers are starting to notice. How you do handle the situation?','A patient is frustrated because they have been kept waiting for their prescription. How would you handle this situation?','A customer returns to the pharmacy with a bottle of prescription medication that is partially used and says it does not work. How would you address the issue?','What threat do internet pharmacies pose to community pharmacies?'];
@@ -65,16 +60,20 @@
 	}
 	qContainer.innerHTML = text;
 
-	function save(num){
+function save(num){
 		var input = document.getElementById('t'+num).value;
+		var sN = "qComTwo" + num;
+		sN = sN.toString();
 		console.log(input);
-		localStorage.removeItem(num)
-		localStorage.setItem(num , input);
+		localStorage.removeItem(sN)
+		localStorage.setItem(sN , input);
 		toast();
 	}
 	function deleteNote(num){
 		if(confirm("Are you sure you want to delete this note?")){
-			localStorage.removeItem(num)
+			var sN = "qComTwo" + num;
+			sN = sN.toString();
+			localStorage.removeItem(sN);
 			toastDel();
 		}else{
 			return;
@@ -126,25 +125,17 @@
 
 	function load(){
 		for(i=0; i <q.length; i++){
-			document.getElementById('t'+i).value = localStorage.getItem(i)
+			var sN = "qComTwo" + i;
+			sN = sN.toString();
+			document.getElementById('t'+i).value = localStorage.getItem(sN)
 			var note = document.getElementById('note'+i)
-			note.innerHTML = localStorage.getItem(i)
+			note.innerHTML = localStorage.getItem(sN)
 			if((note.innerHTML).length > 0){
 				note.style.display ='block';
 			}
 		}
 	}
 	load();
-
-	function reset(){
-	if(confirm("Are you sure you want to delete all notes?")){
-			localStorage.clear();
-			location.reload();
-		}else{
-			return;
-		}		
-		
-	}
 </script>
 
 </body>
