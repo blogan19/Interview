@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="Jquery.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<style type="text/css">
+		.timeWell{
+			float: left;
+			height: 50px;
+			width: 20%;
+			line-height: 50px;
+			background-color: #e3e3e3;
+			border-radius: 5px;
+			margin-bottom: 5px;
+			text-align: center;
+		}
+		.descWell{
+			float: left;
+			height: 50px;
+			width: 75%;
+			background-color: #e3e3e3;
+			border-radius: 5px;
+			margin-left: 5%;
+			text-align: center;
+		}
+		body{
+			background-color: #3E5151;
+		}
+		#btnNext{
+			height: 60px;
+		}
+		#q{
+			text-align: center;
+			font-size: 16px;
+		}
+		
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">General Interview Questions</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+	<a href="index.html"><button class="btn backBtn""><span class="glyphicon glyphicon-chevron-left"></span>Back</button></a>
+</div>
+<br>
+<div class="container">
+
+	<div class="timeWell" id="timer"></div>	
+	<div class="descWell"><h4>Mock Interview</h4></div>
+</div>
+<hr>
+<div class="container">
+	<div id="q" class="jumbotron">Press next question to begin</div>
+	<button id="btnNext" class="btn qBtn btn-block" onclick="qDisp()">Next Question</button>
+</div><br>
+<div class="container invis centre" id="finishMsg">
+	<div class="jumbotron">
+		<h2 class=>Good Luck!</h2>
+		<br>
+		<button class="btn qBtn btn-block" onclick="reset()">Retake Mock Interview</button><br>
+		<a href="index.html"><button class="btn qBtn btn-block" onclick="reset()">Back to Menu</button></a>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	var q0 = ['What do you know about this organisation?','Can you tell us about yourself?','Tell us about yourself and why you want to apply for this role?','What excites you about working in healthcare?','Why do you want to work for this trust/company?','Why do you want to apply to this job?','What reservations do you have about working for us?','Why did you leave your last job?'];
+	var q1 = ['What will you bring to this role?','Where do you see yourself in 5 years time?','What motivates you?','What do you consider to be your strengths?','What is your biggest weakness?','What salary would you expect to receive?','Why do you wish to leave your current position?','If you were a drug, what drug would you be and why?','What responsibilities do you have in your current role?','If a job is repetitive what would motivate you to do it well every day?'];
+	var q2 = ['Describe a time when you failed to achieve a goal','What would you achieve in your first month?','What three words would you use to describe yourself?','What three words would your references use to describe you?','How would your friends describe you?','How do you see the role of the pharmacist changing in the next 5 years?','Tell us about your interests outside of work','What is your opinion of a technician led dispensary?','What have you done to prepare for this interview?','Do you know of any recent changes in national policies or guidelines?'];
+	var q3 = ['When have you worked under your own initiative?','Can you tell me about a time things happened in a way they were not supposed to?','Describe a time where you worked individually','Describe a time where you motivated a team','Describe a time where you dealt with conflict. What would you do differently if it were to happen again?','Describe a time when you used initiative to solve a problem','Describe a time where you have dealt with a medication error','Describe a time where you have communicated effectively ','Describe a time where you provided education to either a group of people or an individual','Tell us about a time you went above and beyond for somebody','Give an example of a time where you implemented change','Describe a time when you failed to achieve a goal','Give an example of a time when you were overwhelmed with work. How did you handle the situation?'];
+	var q4 = ['Tell us about a time you worked as part of a team','Tell us about a time you worked as part of a team which has failed','Tell us about a time you were put in a difficult situation with a colleague','What skills are needed to collaborate with a team to achieve a common goal?','What do you do if there is a disagreement within your team?','How would you lead a team in times of hardship e.g. winter pressures or short staffing?','Tell us about a time you have influenced or motivated people?','Describe a time you led a team.'];
+	var q5 = ['What is the main role of a pharmacist and how would you explain this to a patient?','What are the main characteristics of a successful pharmacist?','What other staff roles would you encounter working in a pharmacy dispensary?','Give an example of a time when you were overwhelmed with work. How did you handle the situation?','How do you expect technology to impact pharmacy services?','What skills would you like to develop in the future?'];
+	var q6 = ['What was the last piece of CPD you recorded?','How do you keep your professional knowledge up to date?','Tell me about a recent pharmaceutical development you’ve learned about.','What was the last journal article you read? Have you implemented this knowledge into practice?','What was the last thing you taught a colleague or student?'];
+	var q7 = ['A consultant isn’t adhering to a policy and is resistant to change their practices. E.g. prescribing off formulary drug. How do approach this situation?','A doctor on your ward keeps making the same error how do you approach this situation?','What is needed to implement a service and get buy in from other colleagues?','When have you implemented changes to a service based on feedback?','What strategies would you implement to manage a supply shortage of a critical medication?','Describe a time you implemented a strategy to save money','What do you understand about clinical audit?','How would you deal with a new MHRA alert?','What must be considered when supplying an unlicensed medication?','In our trust being part of a cohesive team is something we have strived for and achieved. How would you integrate yourself into our team?','A patient returns to collect an owing for a critical medication however the item is not in stock. How do you approach this situation?'];
+	var q8 = ['Tell us about your management style','Tell us about a time you have supervised somebody ','Give me an example of a time you showed leadership?','How would you deal with a member of staff who is consistently underperforming in the role?','How would you deal with a member of staff who is consistently arriving late to work?','When have you had to provide feedback to someone who has under performed and what was the outcome.','What is the difference between leadership and management?','What strategy would you adopt to motivate a team?','How do you delegate work to your team?','Describe a time you have failed as a manager.','What would your most struggling employee say about you?','Describe a time you achieved a when your team has worked together to achieve a goal when placed under significant time and financial constraints.','What experience do you have as a pharmacist manager?','Have you ever had to make a difficult decision at work?','A member of staff comes to you in confidence and tells you that they believe another member of staff has been taking prescription only medications from the shelf for personal use. How do you deal with this?'];
+	var q9 = ['A concerned patient asks you to identify a tablet their 14 year old daughter is taking. You realise it is the contraceptive pill. How would you deal with this situation?','A patient is consistently trying to buy co-codamol every other day and you are concerned they are attending other pharmacies also. How do you deal with this situation?','A dentist writes a prescription for hormonal contraception for their 17 year old daughter. Is this appropriate? How do you deal with this situation?','A patients brother asks for a photocopy of his sisters prescription so that she can take it to a hospital appointment. You have no way of contacting the sister to confirm that this is ok. What do you do?','You a concerned about the child of a methadone patient who presents with unexplained bruising. How do you refer appropriately?','You are presented with a prescription that a doctor has written for themselves. It is for a week of amoxicillin 500mg TDS. What would you do? '];
+	var q10 = ['Do you have any questions to ask us?']
+
+	
+	var qCount = -1;
+	var finished = false;
+	function qDisp(){
+		var qType = ['q0','q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+		qCount++;
+		console.log(qCount);
+		if(qCount == 10){
+			document.getElementById('btnNext').innerHTML = 'Finish Mock Interview';
+		}
+		if(qCount == 11){
+			$('#btnNext').hide();
+			$('#q').html('Mock Interview Finished');
+			$('#finishMsg').show();
+			finished = true;
+			return;
+		}
+		var q = qType[qCount];
+		q = eval(q);
+		var r = Math.floor(Math.random()*q.length);
+		var question = q[r];
+		document.getElementById('q').innerHTML = question;
+		
+		console.log(question);
+	}
+
+
+var minutes = 0;
+var seconds = 0;
+function time(){
+	seconds++;
+	if(seconds > 59){
+		minutes++;
+		seconds = 0;
+	}
+	if(seconds < 10){
+		seconds = "0"+ seconds;
+	}
+	document.getElementById('timer').innerHTML = minutes + ":" + seconds;
+	timer();
+}
+function timer(){
+	if(finished == false){
+		setTimeout(time,1000);
+	}
+}
+timer();
+function reset(){
+	location.reload();
+}
+</script>
+</body>
+</html>

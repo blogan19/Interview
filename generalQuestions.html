@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="Jquery.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="main.css">
+
+	<style type="text/css">
+
+		
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Teamworking Questions</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html"><i class="glyphicon glyphicon-home"></i>Home</a></li>
+        <li><a href="#">Page 2</a></li> 
+        <li><a href="#">Page 3</a></li> 
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<a href="generalInterviewMenu.html"><button type="button" class="btn btn1 btn-block"><span class="glyphicon glyphicon-chevron-left floatL"></span>&nbsp;Return To Menu</button></a>
+	<br>
+	<div class="well">The following questions assess how well you work as part of a team. Click on each question to enter a note.</div>
+</div>
+<hr>
+
+<div class="container" id="qContainer">
+	
+</div>
+
+
+
+<script type="text/javascript">
+	var q = [];
+	var text = "";
+	var qContainer = document.getElementById('qContainer');
+		for(var i=0; i<q.length; i++){
+		text += '<button  data-toggle="collapse" data-target="#q'+i+'" class="qBtn btn btn-block"><p>'+q[i]+'</p></button><div id="q'+i+'" class="collapse"><br><textarea id="t'+i+'"class="textInput"></textarea><button type="button" class="btn btn-block btn-primary" onclick="save('+i+')">Save Note</button></div><br>'
+	}
+	qContainer.innerHTML = text;
+
+	function save(num){
+		var input = document.getElementById('t'+num).value;
+		console.log(input);
+		localStorage.removeItem(num)
+		localStorage.setItem(num , input);
+	}
+
+	function load(){
+		for(i=0; i <q.length; i++){
+			document.getElementById('t'+i).value = localStorage.getItem(i)
+		}
+	}
+	load();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="Jquery.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href="toastr.css" rel="stylesheet"/>
+	<script src="toastr.js"></script>
+
+	<style type="text/css">
+}
+		
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Teamworking Questions</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+     	<li><a href="about.html"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;About</a></li>	
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<a href="generalInterviewMenu.html"><button type="button" class="btn btn1 btn-block"><span class="glyphicon glyphicon-chevron-left floatL"></span>&nbsp;Return To Menu</button></a>
+	<br>
+	<div class="well">The following questions assess how well you work as part of a team. Click on each question to enter a note.</div>
+</div>
+<hr>
+
+<div class="container" id="qContainer">
+	
+</div>
+<div class="container">
+	<button class="btn btn-block" onclick="reset()"> Delete All Notes</button>
+</div>
+
+
+
+<script type="text/javascript">
+	var q = ['Tell us about a time you worked as part of a team','Tell us about a time you worked as part of a team which has failed','Tell us about a time you were put in a difficult situation with a colleague','What skills are needed to collaborate with a team to achieve a common goal?','What do you do if there is a disagreement within your team?','How would you lead a team in times of hardship e.g. winter pressures or short staffing?','Tell us about a time you have influenced or motivated people?','Describe a time you when have led a team.','Describe a time where you motivated a team','What other staff roles would you encounter working in a pharmacy dispensary?'];
+	var text = "";
+	var qContainer = document.getElementById('qContainer');
+		for(var i=0; i<q.length; i++){
+		text += '<button  data-toggle="collapse" data-target="#q'+i+'" class="qBtn btn btn-block"><p>'+q[i]+'</p></button><div id="note'+i+'" class="note"></div><div id="q'+i+'" class="collapse"><br><textarea id="t'+i+'"class="textInput" placeholder="Add question note here..."></textarea><button type="button" class="btn btn-block btnSave" onclick="save('+i+')">Save Note</button><button type="button" class="btn btn-block btnDel" onclick="deleteNote('+i+')">Delete Note</button></div><br>'
+	}
+	qContainer.innerHTML = text;
+
+	function save(num){
+		var input = document.getElementById('t'+num).value;
+		console.log(input);
+		localStorage.removeItem(num)
+		localStorage.setItem(num , input);
+		toast();
+	}
+	function deleteNote(num){
+		if(confirm("Are you sure you want to delete this note?")){
+			localStorage.removeItem(num)
+			toastDel();
+		}else{
+			return;
+		}		
+	}
+
+	function toast(){
+		toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-bottom-center",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "100",
+		  "hideDuration": "1000",
+		  "timeOut": "1000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+		toastr.success('Save Sucessful');
+		setInterval(function(){location.reload()},1000);
+	}
+	function toastDel(){
+		toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-bottom-center",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "100",
+		  "hideDuration": "1000",
+		  "timeOut": "1000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+		toastr.error('Note Deleted');
+		setInterval(function(){location.reload()},1000);
+	}
+
+	function load(){
+		for(i=0; i <q.length; i++){
+			document.getElementById('t'+i).value = localStorage.getItem(i)
+			var note = document.getElementById('note'+i)
+			note.innerHTML = localStorage.getItem(i)
+			if((note.innerHTML).length > 0){
+				note.style.display ='block';
+			}
+		}
+	}
+	load();
+
+	function reset(){
+	if(confirm("Are you sure you want to delete all notes?")){
+			localStorage.clear();
+			location.reload();
+		}else{
+			return;
+		}		
+		
+	}
+</script>
+
+</body>
+</html>

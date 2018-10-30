@@ -1,0 +1,50 @@
+.textInput{
+	width: 100%;
+	border: none;
+	box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+.qBtn{
+	white-space: normal;
+	background: none;
+	border: none;
+	background: linear-gradient(to right, #fc4a1a, #f7b733);
+	color: white;
+	height: auto;
+	
+}
+.btn1{
+	color: #fc4a1a;
+	border: solid 1px #fc4a1a;
+	background: none;
+}
+.backBtn{
+	color: #fc4a1a;
+	background-color: #ffffff; 
+}
+.floatL{
+	float: left;
+}
+.note{
+	display: none;
+	text-align: center;
+	background-color: #f5f5f5;
+	border: solid 1px #e3e3e3;
+	margin-top: 5px;
+	width: 80%;
+	margin-left: 10%;
+	border-radius: 5px;
+}
+.btnSave{
+	background-color: green;
+	color: white;
+}
+.btnDel{
+	background-color: red;
+	color: white;
+}
+.invis{
+	display:  none;
+}
+.centre{
+	text-align: center;
+}
