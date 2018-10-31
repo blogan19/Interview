@@ -12,10 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 
 	<style type="text/css">
-		.navbar{
-			background: linear-gradient(to right, #fc4a1a, #f7b733);
-			color: white;
-		}
+		
 		.glyphicon{
 			float: right;
 			margin-right: 10px;
@@ -23,26 +20,34 @@
 		.listHead{
 			text-align: center;
 			font-weight: bold;
-			border-bottom: solid 3px #fc4a1a;
+			border-bottom: solid 3px #2F80ED;
 		}
-		body{
-			background-color: #3E5151;
-		}
+		
 	</style>
 </head>
 <body>
 
-<nav class="navbar navbar-fixed-top">
-	  <div class="container-fluid">
-	    <div class="navbar-header grad3">
-	    	<h4 style="margin-left: 20px">About</h4>
-	    </div>
-	  </div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Hospital Interview Questions</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+     	<li><a href="about.html"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;About</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 
 <div class="container">
-	<br><br><br><br>
 	<a href="index.html"><button class="btn btn-block qBtn">Return to Menu </button></a>
 	<br>
 		<div class="jumbotron" style="font-size: 1em; color: black">
